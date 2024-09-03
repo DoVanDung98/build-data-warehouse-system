@@ -1,4 +1,4 @@
-WITH dim_customer_category__source AS(
+WITH dim_customer__source AS(
   SELECT 
     *
   FROM `vit-lam-data.wide_world_importers.sales__customer_categories`
@@ -8,7 +8,7 @@ WITH dim_customer_category__source AS(
   SELECT
     customer_category_id AS customer_category_key
     , customer_category_name AS customer_category_name
-  FROM dim_customer_category__source
+  FROM dim_customer__source
 )
 
 , dim_customer__cast_type AS(
