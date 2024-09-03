@@ -1,24 +1,24 @@
-WITH dim_customer__source AS(
+WITH dim_buying_group__source AS(
   SELECT 
     *
-  FROM `vit-lam-data.wide_world_importers.sales__customer_categories`
+  FROM `vit-lam-data.wide_world_importers.sales__buying_groups`
 )
 
-, dim_customer__rename AS(
+, dim_buying_group__rename AS(
   SELECT
-    customer_category_id AS customer_category_key
-    , customer_category_name AS customer_category_name
-  FROM dim_customer__source
+    buying_group_id AS buying_group_key
+    , buying_group_name AS buying_group_name
+  FROM dim_buying_group__source
 )
 
-, dim_customer__cast_type AS(
+, dim_buying_group__cast_type AS(
   SELECT 
-    CAST(customer_category_key AS INTEGER) AS customer_category_key
-    , CAST(customer_category_name AS STRING) AS customer_category_name
-  FROM dim_customer__rename
+    CAST(buying_group_key AS INTEGER) AS buying_group_key
+    , CAST(buying_group_name AS STRING) AS buying_group_name
+  FROM dim_buying_group__rename
 )
 
 SELECT 
-  customer_category_key
-  , customer_category_name
-FROM dim_customer__cast_type
+  buying_group_key
+  , buying_group_name
+FROM dim_buying_group__cast_type
