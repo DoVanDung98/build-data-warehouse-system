@@ -25,6 +25,13 @@ WITH fact_sales_order_line__source AS(
 )
 
 SELECT
-  *
+  fact_line.sales_order_line_key
+  , fact_line.sales_order_key
+  , fact_line.product_key
+  , fact_line.quantity
+  , fact_line.unit_price
+  , fact_header.customer_key
   , quantity * unit_price as gross_amount
-FROM fact_sales_order_line__cast_type
+FROM fact_sales_order_line__cast_type AS fact_line
+LEFT JOIN `eco-channel-429606-p1.wide_world_importers_dwh_staging.stg_fact_sales_order` AS fact_header
+ON fact_line.sales_order_key = fact_header.sales_order_key
